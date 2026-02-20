@@ -1,87 +1,97 @@
 @extends('layouts.app')
- 
+
 @section('title', 'Home')
- 
+
 @section('content')
 
-<section>
-    
-</section>
-
-    <div class="row gx-5">
-        <div class="col-8">
-            @forelse ($home_posts as $post)
-            <div class="card mb-4">
-                {{-- title --}}
-                @include('users.posts.contents.title')
-                {{-- body --}}
-                @include('users.posts.contents.body')
-            </div>
-                
-            @empty
-            <div class="text-center">
-                <h2>Share Photos</h2>
-                <p class="text-secondary">
-                    When you share photos, they'll appear on your profile.
-                </p>
-                <a href="{{ route('post.create') }}" class="text-decoration-none">Share your first photo</a>
-            </div>
-            @endforelse
+    {{-- THE HERO SECTION --}}
+    <section class="apple-hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title text-gradient-magical">視界の、その先へ。</h1>
+            <p class="hero-desc">息を呑むような出会いが、スクロールの先に。</p>
         </div>
-        <div class="col-4">
-            {{-- PROFILE OVERVIEW --}}
-            <div class="row align-items-center mb-5 bg-white shadow-sm rounded-3 py-3">
-                <div class="col-auto">
-                    <a href="{{ route('profile.show', Auth::user()->id)}}">
-                        @if (Auth::user()->avatar)
-                            <img src="{{ Auth::user()->avatar }}" alt="" class="rounded-circle avatar-md">
-                        @else
-                            <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
-                        @endif
-                    </a>
-                </div>
-                <div class="col ps-0">
-                    <a href="{{ route('profile.show', Auth::user()->id)}}" class="text-decoration-none text-dark fw-bold">{{ Auth::user()->name }}</a>
-                    <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
-                </div>
+    </section>
+
+
+    {{-- THE MAIN CONTENT --}}
+    <div class="container main-content-wrapper">
+        <div class="row gx-5">
+            <div class="col-lg-8">
+                @forelse ($home_posts as $post)
+                    {{-- Bento Cardの魔法を適用 --}}
+                    <div class="bento-card mb-5">
+                        {{-- title --}}
+                        @include('users.posts.contents.title')
+                        {{-- body --}}
+                        @include('users.posts.contents.body')
+                    </div>
+
+                @empty
+                    <div class="text-center">
+                        <h2>Share Photos</h2>
+                        <p class="text-secondary">
+                            When you share photos, they'll appear on your profile.
+                        </p>
+                        <a href="{{ route('post.create') }}" class="text-decoration-none">Share your first photo</a>
+                    </div>
+                @endforelse
             </div>
-            @if ($suggested_users)
-                <div class="row">
+            <div class="col-4">
+                {{-- PROFILE OVERVIEW --}}
+                <div class="row align-items-center mb-5 bg-white shadow-sm rounded-3 py-3">
                     <div class="col-auto">
-                        <p class="fw-bold text-secondary">Suggested For you</p>
-                    </div>
-                    <div class="col text-end">
-                        <a href="#" class="fw-bold text-dark text-decoration-none"></a>
-                    </div>
-                </div>
-        
-                @foreach ($suggested_users as $user)
-                <div class="row align-items-center mb-3">
-                    <div class="col-auto">
-                        <a href="{{ route('profile.show', $user->id)}}">
-                            @if ($user->avatar)
-                                <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="rounded-circle avatar-sm">
+                        <a href="{{ route('profile.show', Auth::user()->id) }}">
+                            @if (Auth::user()->avatar)
+                                <img src="{{ Auth::user()->avatar }}" alt="" class="rounded-circle avatar-md">
                             @else
-                                <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
+                                <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
                             @endif
-        
                         </a>
                     </div>
-                    <div class="col ps-0 text-truncate">
-                        <a href="{{ route('profile.show', $user->id)}}" class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>
-                    </div>
-                    <div class="col-auto">
-                        <form action="{{ route('follow.store', $user->id)}}" method="POST">
-                            @csrf
-                            <button class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button>
-                        </form>
+                    <div class="col ps-0">
+                        <a href="{{ route('profile.show', Auth::user()->id) }}"
+                            class="text-decoration-none text-dark fw-bold">{{ Auth::user()->name }}</a>
+                        <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
                     </div>
                 </div>
-                    
-                @endforeach
-            @endif
-        </div>
+                @if ($suggested_users)
+                    <div class="row">
+                        <div class="col-auto">
+                            <p class="fw-bold text-secondary">Suggested For you</p>
+                        </div>
+                        <div class="col text-end">
+                            <a href="#" class="fw-bold text-dark text-decoration-none"></a>
+                        </div>
+                    </div>
 
+                    @foreach ($suggested_users as $user)
+                        <div class="row align-items-center mb-3">
+                            <div class="col-auto">
+                                <a href="{{ route('profile.show', $user->id) }}">
+                                    @if ($user->avatar)
+                                        <img src="{{ $user->avatar }}" alt="{{ $user->name }}"
+                                            class="rounded-circle avatar-sm">
+                                    @else
+                                        <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
+                                    @endif
+
+                                </a>
+                            </div>
+                            <div class="col ps-0 text-truncate">
+                                <a href="{{ route('profile.show', $user->id) }}"
+                                    class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>
+                            </div>
+                            <div class="col-auto">
+                                <form action="{{ route('follow.store', $user->id) }}" method="POST">
+                                    @csrf
+                                    <button class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
     </div>
-@endsection
- 
+
+    @endsection

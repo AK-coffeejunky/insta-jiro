@@ -19,7 +19,44 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    {{-- 1. css --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    {{-- 2. 妥協なき美しさのためのグローバル定義 --}}
+    <style>
+        /* ページ全体のスクロールを、指に吸い付くように滑らかに */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* AppleのRetinaディスプレイで文字を最も美しく（細く、鋭く）描画する魔法 */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* スクロールバーの存在感を消し、コンテンツに没入させる (Webkit系) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        /* ダークモード時のスクロールバー */
+        @media (prefers-color-scheme: dark) {
+            ::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.2);
+            }
+        }
+    </style>
 
 
 
@@ -29,8 +66,6 @@
 
 <body>
 
-    {{-- akira --}}
-    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-none">
             <div class="container">
@@ -101,12 +136,11 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-dropdown">
                                     {{-- [SOON] ADMIN CONTROLS --}}
                                     @can('admin')
-                                    <a href="{{ route('admin.users') }}" class="dropdown-item">
-                                        <i class="fa-solid fa-user-gear"></i> Admin
-                                    </a>
+                                        <a href="{{ route('admin.users') }}" class="dropdown-item">
+                                            <i class="fa-solid fa-user-gear"></i> Admin
+                                        </a>
 
-                                    <hr class="dropdown-divider">
-                                        
+                                        <hr class="dropdown-divider">
                                     @endcan
 
 
@@ -144,12 +178,12 @@
                                     class="list-group-item {{ request()->is('admin/users') ? 'active' : '' }}">
                                     <i class="fa-solid fa-users"></i> Users
                                 </a>
-                                <a href="{{ route('admin.posts') }}" 
-                                class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
+                                <a href="{{ route('admin.posts') }}"
+                                    class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
                                     <i class="fa-solid fa-newspaper"></i> Posts
                                 </a>
-                                <a href="{{ route('admin.categories') }}" 
-                                class="list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
+                                <a href="{{ route('admin.categories') }}"
+                                    class="list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
                                     <i class="fa-solid fa-tags"></i> Categories
                                 </a>
                             </div>
