@@ -28,8 +28,11 @@
 </head>
 
 <body>
+
+    {{-- akira --}}
+    
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-none">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <h1 class="h5 mb-0">{{ config('app.name') }}</h1>
