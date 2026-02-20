@@ -1,53 +1,75 @@
-/* akira */
-/* unko */
-/* nao2nd */
+:root {
+    /* Colors (Light Mode) */
+    --bg-page: #ffffff; /* 妥協なき純白 */
+    --bg-card: #f5f5f7; /* 絶妙な温かみを持つ極薄いグレー */
+    --text-primary: #1d1d1f; /* 完全な黒ではない、視覚に優しい深み */
+    --text-secondary: #86868b;
+    --accent-blue: #0071e3; /* Apple Blue */
 
-.icon-sm{
+    /* Glassmorphism Variables */
+    --nav-bg: rgba(255, 255, 255, 0.72);
+    --nav-border: rgba(0, 0, 0, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Colors (Dark Mode) */
+        --bg-page: #000000; /* 深淵なる漆黒 */
+        --bg-card: #1c1c1e; /* 空間に浮かぶダークグレー */
+        --text-primary: #f5f5f7;
+        --text-secondary: #86868b;
+
+        /* Glassmorphism Variables */
+        --nav-bg: rgba(0, 0, 0, 0.72);
+        --nav-border: rgba(255, 255, 255, 0.16);
+    }
+}
+
+.icon-sm {
     font-size: 2rem;
 }
 
-.image-lg{
+.image-lg {
     width: 9rem;
     height: 9rem;
     object-fit: cover;
 }
 
-.fa-heart{
+.fa-heart {
     font-size: 1.5rem;
 }
 
-.xsmall{
+.xsmall {
     font-size: 0.65rem;
 }
 
-.icon-lg{
+.icon-lg {
     font-size: 9rem;
-
 }
 
-.grid-img{
+.grid-img {
     width: 100%;
     height: 300px;
-    object-fit: cover
+    object-fit: cover;
 }
 
-.avatar-lg{
+.avatar-lg {
     width: 9rem;
     height: 9rem;
     object-fit: cover;
 }
 
-.avatar-sm{
+.avatar-sm {
     width: 2rem;
     height: 2rem;
     object-fit: cover;
 }
 
-.icon-md{
+.icon-md {
     font-size: 3.5rem;
 }
 
-.avatar-md{
+.avatar-md {
     width: 3.5rem;
     height: 3.5rem;
     object-fit: cover;
