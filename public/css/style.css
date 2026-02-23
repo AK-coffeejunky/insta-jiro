@@ -76,3 +76,234 @@
 }
 
 /* nao */
+
+/* kei */
+/* login */
+/* ================== Login専用フルスクリーン ================== */
+.auth-login-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* 左側：フォーム */
+.auth-login-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-login-card {
+    width: 380px;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    animation: fadeInLeft 1s ease forwards;
+}
+
+.auth-login-title {
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.auth-login-field {
+    margin-bottom: 15px;
+}
+
+.auth-login-input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.auth-login-input:focus {
+    border-color: #0071e3;
+    box-shadow: 0 0 0 3px rgba(0,113,227,0.2);
+}
+
+.auth-login-button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: black;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-login-button:hover {
+    opacity: 0.85;
+}
+
+.auth-login-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.auth-login-link {
+    margin-left: 6px;
+    color: #0071e3;
+    text-decoration: none;
+}
+
+.auth-login-link:hover {
+    text-decoration: underline;
+}
+
+.auth-login-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ラベルを太字に */
+.auth-login-label {
+    display: block;
+    font-weight: 700; /* 太字 */
+    margin-bottom: 6px;
+}
+
+/* Instagramロゴ＋テキスト */
+.auth-login-brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 左揃え */
+    margin-bottom: 20px;
+}
+
+
+/* Font Awesome ロゴのサイズ・色調整 */
+.auth-login-brand-logo {
+    font-size: 32px;
+    color: #E1306C; /* Instagramピンク系 */
+    margin-right: 8px;
+}
+
+/* ブランドテキスト */
+.auth-login-brand-text {
+    font-weight: 700;
+    font-size: 24px;
+    color: #000; /* 好みに応じて変更 */
+}
+
+
+
+/* 右側：背景画像 + テキスト */
+.auth-login-right {
+    flex: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    /* 初期透明度とトランジション */
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+
+.auth-login-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-login-text {
+    color: white;
+    font-size: 36px;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    line-height: 1.2;
+    animation: fadeInRight 1.2s ease forwards;
+}
+
+/* ================== アニメーション ================== */
+
+
+@keyframes fadeInRight {
+    0% { opacity: 0; transform: translateX(50px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* register */
+/* ===== Register Page ===== */
+
+.auth-register-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-register-card {
+    width: 400px;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.auth-register-title {
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.auth-register-input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.auth-register-input:focus {
+    border-color: #0071e3;
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2);
+}
+
+.auth-register-button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: black;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.auth-register-button:hover {
+    opacity: 0.85;
+}
+
+.auth-register-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
