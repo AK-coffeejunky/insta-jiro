@@ -1,7 +1,8 @@
+/* 全体の定義 */
 :root {
     /* Colors (Light Mode) */
     --bg-page: #ffffff; /* 妥協なき純白 */
-    --bg-card: #f5f5f7; /* 絶妙な温かみを持つ極薄いグレー */
+    --bg-card: #ffffffd6; /* 絶妙な温かみを持つ極薄いグレー */
     --text-primary: #1d1d1f; /* 完全な黒ではない、視覚に優しい深み */
     --text-secondary: #86868b;
     --accent-blue: #0071e3; /* Apple Blue */
@@ -9,20 +10,129 @@
     /* Glassmorphism Variables */
     --nav-bg: rgba(255, 255, 255, 0.72);
     --nav-border: rgba(0, 0, 0, 0.16);
+
+    --card-border: rgba(0, 0, 0, 0.06);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
-        /* Colors (Dark Mode) */
-        --bg-page: #000000; /* 深淵なる漆黒 */
-        --bg-card: #1c1c1e; /* 空間に浮かぶダークグレー */
+        
+        --bg-page: #000000;
+        --bg-card: #1c1c1e; 
         --text-primary: #f5f5f7;
         --text-secondary: #86868b;
 
-        /* Glassmorphism Variables */
+
         --nav-bg: rgba(0, 0, 0, 0.72);
         --nav-border: rgba(255, 255, 255, 0.16);
     }
+} */
+
+/* home.blade.php */
+
+body {
+    font-family:
+        -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue",
+        sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================
+   Hero Section (魔法の空間)
+========================================= */
+.apple-hero-section {
+    position: relative;
+    height: 80vh; /* 画面の80%を占有し、下部にコンテンツの気配を残す */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--bg-page);
+    margin-bottom: 25%;
+}
+
+.hero-content {
+    text-align: center;
+    /* スムーズなレンダリングのためのハードウェアアクセラレーション */
+    will-change: transform, opacity;
+}
+
+.hero-title {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.hero-desc {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+}
+
+/* 息を呑むグラデーションテキスト */
+.text-gradient-magical {
+    background: linear-gradient(
+        90deg,
+        #2ca2b4,
+        #5598de 24%,
+        #7f87ff 45%,
+        #f65aad 76%,
+        #ec3d43
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* =========================================
+   Main Content & Bento Cards
+========================================= */
+.main-content-wrapper {
+    position: relative;
+    z-index: 10; /* Heroセクションの上に重なるように配置 */
+    padding-bottom: 200px;
+}
+
+.bento-card {
+    background-color: var(--bg-card);
+    border-radius: 30px; /* 妥協なき30ミリの曲線 */
+    padding: 40px; /* 圧倒的な余白 */
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* 極めて薄い影 */
+    /* overflow: hidden; */
+    transition:
+        transform 0.4s cubic-bezier(0.15, 0.83, 0.66, 1),
+        box-shadow 0.4s ease;
+}
+
+.bento-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.comment_btn {
+    color: var(--bs--body-bg);
+}
+
+.input-group:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Profile & Suggested Cards (サイドバー用の調整) */
+.profile-card {
+    padding: 30px; /* サイドバーは少しだけ余白を調整 */
+}
+
+.suggested-card {
+    padding: 30px;
 }
 
 .icon-sm {
