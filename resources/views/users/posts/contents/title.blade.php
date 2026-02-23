@@ -3,7 +3,7 @@
         <div class="col-auto">
             <a href="{{ route('profile.show', $post->user->id)}}">
                 @if ($post->user->avatar)
-                    <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}" class="rounded-circle avatar-sm">
+                    <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}" class="rounded-circle avatar-sm  border border-2 border-white shadow-sm">
                 @else
                     <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
                 @endif

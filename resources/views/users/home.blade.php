@@ -6,9 +6,14 @@
 
     {{-- THE HERO SECTION --}}
     <section class="apple-hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title text-gradient-magical">視界の、その先へ。</h1>
-            <p class="hero-desc">息を呑むような出会いが、スクロールの先に。</p>
+        <div class="hero-content fw-bolder">
+            <h1 class="hero-title text-gradient-magical">Scroll into stories.</h1>
+            <p class="hero-desc">A world of inspiration, frame by frame.</p>
+            {{-- <h1 class="hero-title text-gradient-magical">The world, in focus.</h1>
+            <p class="hero-desc">A curated gallery of the human experience.</p> --}}
+            {{-- <h1 class="hero-title text-gradient-magical">Vision. Redefined.</h1>
+            <p class="hero-desc">Connect through the lens of pure curiosity.</p> --}}
+
         </div>
     </section>
 
@@ -36,13 +41,15 @@
                     </div>
                 @endforelse
             </div>
-            <div class="col-4">
+
+
+            <div class="col-lg-4">
                 {{-- PROFILE OVERVIEW --}}
                 <div class="row align-items-center mb-5 bg-white shadow-sm rounded-3 py-3">
                     <div class="col-auto">
                         <a href="{{ route('profile.show', Auth::user()->id) }}">
                             @if (Auth::user()->avatar)
-                                <img src="{{ Auth::user()->avatar }}" alt="" class="rounded-circle avatar-md">
+                                <img src="{{ Auth::user()->avatar }}" alt="" class="rounded-circle avatar-md border border-2 border-white shadow-sm">
                             @else
                                 <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
                             @endif
@@ -93,5 +100,32 @@
             </div>
         </div>
     </div>
+
+    {{-- THE MAGIC SCRIPT (hero section) --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroContent = document.querySelector('.hero-content');
+        
+        window.addEventListener('scroll', () => {
+            // スクロール量を取得
+            const scrolled = window.scrollY;
+            
+            // 魔法の計算式：スクロールに応じて透明度を下げ、奥へ沈み込み、少し下に移動する
+            const opacity = 1 - (scrolled / 400);
+            const scale = 1 - (scrolled / 2000); 
+            const translateY = scrolled * 0.4;
+            
+            if (heroContent) {
+                // 透明度が0未満にならないように制御
+                heroContent.style.opacity = Math.max(opacity, 0);
+                // パララックスとスケールダウンの適用
+                heroContent.style.transform = `translateY(${translateY}px) scale(${scale})`;
+                
+                // 完全に消えたらクリック判定を無効化する（UXへの配慮）
+                heroContent.style.pointerEvents = opacity <= 0 ? 'none' : 'auto';
+            }
+        });
+    });
+</script>
 
     @endsection

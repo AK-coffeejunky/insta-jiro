@@ -38,9 +38,9 @@
         @csrf
 
         <div class="input-group">
-            <textarea name="comment_body{{ $post->id }}" cols="30" rows="1" class="form-control form-control-sm"
+            <textarea name="comment_body{{ $post->id }}" cols="30" rows="1" class="form-control form-control-sm border-0"
                 placeholder="Add a comment...">{{ old('comment_body' . $post->id) }}</textarea>
-            <button type="submit" class="btn btn-outline-secondary btn-sm">
+            <button type="submit" class="comment_btn btn btn-outline btn-sm border-0">
                 <i class="fa-regular fa-paper-plane"></i>
             </button>
         </div>

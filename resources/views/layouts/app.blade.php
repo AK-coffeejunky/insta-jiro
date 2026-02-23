@@ -80,7 +80,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body style="background-color: var(--bg-page)">
 
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-none fixed-top">
