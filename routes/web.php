@@ -68,4 +68,5 @@ Route::group(['middleware' => 'auth'], routes: function (): void {
 
     Route::get('/follower/{user_id}/show', [ProfileController::class, 'follower_show'])->name('profile.show.follower');
     Route::get('/following/{user_id}/show', [ProfileController::class, 'following_show'])->name('profile.show.following');
+
 });
