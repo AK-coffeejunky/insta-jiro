@@ -19,6 +19,8 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
     {{-- 1. css --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -34,6 +36,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
+            padding-top: 80px
         }
 
         /* スクロールバーの存在感を消し、コンテンツに没入させる (Webkit系) */
@@ -56,6 +59,19 @@
                 background: rgba(255, 255, 255, 0.2);
             }
         }
+
+        .navbar {
+            backdrop-filter: saturate(100%) blur(20px);
+            -webkit-backdrop-filter: saturate(100%) blur(20px);
+            transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .h1 {
+            font-size: 30px;
+            font-family: "Dancing Script", cursive;
+            font-style: italic;
+            text-shadow: 1px 1px 0px #ee2f2f, 2px 2px 0px #cf288c, 3px 3px 0px #e7a522, 4px 4px 0px #1100fa;
+        }
     </style>
 
 
@@ -67,10 +83,10 @@
 <body>
 
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-none">
+        <nav class="navbar navbar-expand-md navbar-light shadow-none fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <h1 class="h5 mb-0">{{ config('app.name') }}</h1>
+                    <h1 class="h1 mb-0 fw-bold">{{ config('app.name') }}</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -85,7 +101,7 @@
                         @if (!request()->is('admin/*'))
                             <ul class="navbar-nav ms-auto">
                                 <form action="{{ route('search') }}" style="width: 300px">
-                                    <input type="search" name="search" class="form-control form-control-sm"
+                                    <input type="search" name="search" class="form-control form-control-sm rounded-4"
                                         placeholder="Search...">
                                 </form>
                             </ul>
@@ -161,6 +177,9 @@
                                     </form>
                                 </div>
                             </li>
+
+                            {{-- language --}}
+                            
                         @endguest
                     </ul>
                 </div>
