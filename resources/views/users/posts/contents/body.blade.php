@@ -1,8 +1,8 @@
-<div class="container p-0">
-    <a href="{{ route('post.show', $post->id) }}">
-        <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="w-100">
-    </a>
-</div>
+{{-- THE IMAGE (The Full Bleed) --}}
+<a href="{{ route('post.show', $post->id) }}" class="d-block overflow-hidden">
+    <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="post-image-seamless">
+</a>
+
 <div class="card-body">
     {{-- heart button + no. of likes ; categories --}}
     <div class="row align-items-center">

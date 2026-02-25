@@ -18,114 +18,97 @@
     </section>
 
 
-    {{-- THE MAIN CONTENT --}}
+    {{-- THE MAIN CONTENT (The Single Column Masterpiece) --}}
     <div class="container main-content-wrapper">
-        <div class="row gx-5">
-            <div class="col-lg-8">
-                @forelse ($home_posts as $post)
-                    {{-- Bento Cardの魔法を適用 --}}
-                    <div class="bento-card mb-5">
-                        {{-- title --}}
-                        @include('users.posts.contents.title')
-                        {{-- body --}}
-                        @include('users.posts.contents.body')
-                    </div>
+        {{-- コンテンツを画面の中央に配置し、左右に贅沢な余白を持たせる --}}
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
 
+                {{-- THE DISCOVERY CAROUSEL --}}
+                @if ($suggested_users)
+                    <div class="discovery-section mb-5">
+                        <p class="fw-bold text-secondary text-uppercase mb-3"
+                            style="font-size: 0.85rem; letter-spacing: 0.05em; padding-left: 8px;">
+                            Suggested for you
+                        </p>
+                        <div class="bento-carousel">
+                            @foreach ($suggested_users as $user)
+                                <div class="bento-card compact-bento">
+                                    <div class="text-center">
+                                        <a href="{{ route('profile.show', $user->id) }}" class="d-block mb-3">
+                                            @if ($user->avatar)
+                                                <img src="{{ $user->avatar }}" alt="{{ $user->name }}"
+                                                    class="rounded-circle shadow-sm"
+                                                    style="width: 64px; height: 64px; object-fit: cover;">
+                                            @else
+                                                <i class="fa-solid fa-circle-user text-secondary"
+                                                    style="font-size: 64px;"></i>
+                                            @endif
+                                        </a>
+                                        <a href="{{ route('profile.show', $user->id) }}"
+                                            class="text-decoration-none text-dark fw-bold d-block text-truncate mb-3"
+                                            style="font-size: 1rem; letter-spacing: -0.01em;">
+                                            {{ $user->name }}
+                                        </a>
+                                        <form action="{{ route('follow.store', $user->id) }}" method="POST">
+                                            @csrf
+                                            <button class="border-0 btn-apple-follow w-100">Follow</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
+                {{-- THE TIMELINE (妥協なきポストの羅列) --}}
+                @forelse ($home_posts as $post)
+
+                        <div data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000" class="bento-card mb-5">
+                            @include('users.posts.contents.title')
+                            @include('users.posts.contents.body')
+                        </div>
+                    {{-- </div> --}}
                 @empty
-                    <div class="text-center">
-                        <h2>Share Photos</h2>
-                        <p class="text-secondary">
+                    <div class="bento-card text-center py-5">
+                        <h2 class="fw-bold text-dark mb-3">Share Photos</h2>
+                        <p class="text-secondary mb-4">
                             When you share photos, they'll appear on your profile.
                         </p>
-                        <a href="{{ route('post.create') }}" class="text-decoration-none">Share your first photo</a>
+                        <a href="{{ route('post.create') }}" class="btn btn-primary rounded-pill px-4 py-2 fw-bold">Share
+                            your first photo</a>
                     </div>
                 @endforelse
-            </div>
 
-
-            <div class="col-lg-4">
-                {{-- PROFILE OVERVIEW --}}
-                <div class="row align-items-center mb-5 bg-white shadow-sm rounded-3 py-3">
-                    <div class="col-auto">
-                        <a href="{{ route('profile.show', Auth::user()->id) }}">
-                            @if (Auth::user()->avatar)
-                                <img src="{{ Auth::user()->avatar }}" alt="" class="rounded-circle avatar-md border border-2 border-white shadow-sm">
-                            @else
-                                <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
-                            @endif
-                        </a>
-                    </div>
-                    <div class="col ps-0">
-                        <a href="{{ route('profile.show', Auth::user()->id) }}"
-                            class="text-decoration-none text-dark fw-bold">{{ Auth::user()->name }}</a>
-                        <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
-                    </div>
-                </div>
-                @if ($suggested_users)
-                    <div class="row">
-                        <div class="col-auto">
-                            <p class="fw-bold text-secondary">Suggested For you</p>
-                        </div>
-                        <div class="col text-end">
-                            <a href="#" class="fw-bold text-dark text-decoration-none"></a>
-                        </div>
-                    </div>
-
-                    @foreach ($suggested_users as $user)
-                        <div class="row align-items-center mb-3">
-                            <div class="col-auto">
-                                <a href="{{ route('profile.show', $user->id) }}">
-                                    @if ($user->avatar)
-                                        <img src="{{ $user->avatar }}" alt="{{ $user->name }}"
-                                            class="rounded-circle avatar-sm">
-                                    @else
-                                        <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-                                    @endif
-
-                                </a>
-                            </div>
-                            <div class="col ps-0 text-truncate">
-                                <a href="{{ route('profile.show', $user->id) }}"
-                                    class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>
-                            </div>
-                            <div class="col-auto">
-                                <form action="{{ route('follow.store', $user->id) }}" method="POST">
-                                    @csrf
-                                    <button class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button>
-                                </form>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
             </div>
         </div>
     </div>
 
     {{-- THE MAGIC SCRIPT (hero section) --}}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const heroContent = document.querySelector('.hero-content');
-        
-        window.addEventListener('scroll', () => {
-            // スクロール量を取得
-            const scrolled = window.scrollY;
-            
-            // 魔法の計算式：スクロールに応じて透明度を下げ、奥へ沈み込み、少し下に移動する
-            const opacity = 1 - (scrolled / 400);
-            const scale = 1 - (scrolled / 2000); 
-            const translateY = scrolled * 0.4;
-            
-            if (heroContent) {
-                // 透明度が0未満にならないように制御
-                heroContent.style.opacity = Math.max(opacity, 0);
-                // パララックスとスケールダウンの適用
-                heroContent.style.transform = `translateY(${translateY}px) scale(${scale})`;
-                
-                // 完全に消えたらクリック判定を無効化する（UXへの配慮）
-                heroContent.style.pointerEvents = opacity <= 0 ? 'none' : 'auto';
-            }
-        });
-    });
-</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroContent = document.querySelector('.hero-content');
 
-    @endsection
+            window.addEventListener('scroll', () => {
+                // スクロール量を取得
+                const scrolled = window.scrollY;
+
+                // 魔法の計算式：スクロールに応じて透明度を下げ、奥へ沈み込み、少し下に移動する
+                const opacity = 1 - (scrolled / 400);
+                const scale = 1 - (scrolled / 2000);
+                const translateY = scrolled * 0.4;
+
+                if (heroContent) {
+                    // 透明度が0未満にならないように制御
+                    heroContent.style.opacity = Math.max(opacity, 0);
+                    // パララックスとスケールダウンの適用
+                    heroContent.style.transform = `translateY(${translateY}px) scale(${scale})`;
+
+                    // 完全に消えたらクリック判定を無効化する（UXへの配慮）
+                    heroContent.style.pointerEvents = opacity <= 0 ? 'none' : 'auto';
+                }
+            });
+        });
+    </script>
+
+@endsection
