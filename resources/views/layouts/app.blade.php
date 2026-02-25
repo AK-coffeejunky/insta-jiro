@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    
 </head>
 
 <body style="background-color: var(--bg-page)">

@@ -219,10 +219,10 @@ body {
 /* =========================================
    5. The Discovery Carousel (横スクロール)
 ========================================= */
-<<<<<<< Updated upstream
+
 .discovery-section {
     width: 100%;
-=======
+}
 .main-content-wrapper {
     position: relative;
     z-index: 10; /* Heroセクションの上に重なるように配置 */
@@ -452,7 +452,6 @@ a.post-image-seamless:hover {
     width: 1200px; /* ← 画面幅より少し広めに指定 */
     max-width: 100%; /* 画面を超えないように制御 */
     margin: 0 auto; /* 横中央に配置 */
->>>>>>> Stashed changes
     overflow: hidden;
     flex-direction: row-reverse; /* 右に画像、左にフォーム */
     gap: 120px; /* フォームと写真の間隔 */
@@ -620,7 +619,6 @@ a.post-image-seamless:hover {
     max-width: 900px;   /* 最大幅を指定して画面幅に合わせる */
     width: 100%;        /* 親コンテナに合わせる */
     max-width: 900px;   /* 最大幅を指定して画面幅に合わせる */
->>>>>>> Stashed changes
     padding: 40px;
     border-radius: 30px; /* Bento Gridと合わせる */
     background: var(--bg-card); /* 半透明からBentoのグレーへ */
@@ -659,7 +657,7 @@ a.post-image-seamless:hover {
     background-color: var(--bg-page);
 }
 
-<<<<<<< Updated upstream
+
 .auth-login-input:focus, .auth-register-input:focus {
     border-color: var(--accent-blue);
     box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2);
@@ -672,7 +670,7 @@ a.post-image-seamless:hover {
     border: none;
     background: var(--text-primary);
     color: var(--bg-page);
-=======
+}
 .auth-login-form {
     width: 100%;
     max-width: 900px; /* カードより大きめに */
@@ -727,7 +725,7 @@ a.post-image-seamless:hover {
 .auth-login-button:active {
     transform: scale(0.98);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
->>>>>>> Stashed changes
+
 }
 
 .auth-login-right {
@@ -743,7 +741,7 @@ a.post-image-seamless:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-<<<<<<< Updated upstream
+
     opacity: 1;
     animation: fadeInRight 1.2s ease forwards;
 }
@@ -759,11 +757,8 @@ a.post-image-seamless:hover {
 .icon-sm { font-size: 36px; }
 .icon-md { font-size: 56px; }
 .icon-lg { font-size: 9rem; }
-=======
-    overflow: hidden;
-    opacity: 1;
-    transition: opacity 0.5s ease;
-}
+
+
 
 
 .auth-login-overlay {
@@ -980,6 +975,7 @@ a.post-image-seamless:hover {
     color: #000;                  /* 色はそのまま */
     transform: translateY(-2px);  /* ほんの少し浮く */
 /* 控えめなホバー: 薄いグレーで少し浮く感じ */
+}
 .auth-register-button.secondary:hover {
     background: rgba(0,0,0,0.05); /* 真っ黒じゃなく薄い黒 */
     color: #000;                  /* 色はそのまま */
