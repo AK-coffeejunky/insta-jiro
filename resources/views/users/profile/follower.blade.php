@@ -18,7 +18,7 @@
                                 <a href="{{ route('profile.show', $follow->follower->id) }}">
                                     @if ($follow->follower->avatar)
                                         <img src="{{ $follow->follower->avatar }}" alt="{{ $follow->follower->name }}"
-                                            class="rounded-circle avatar-sm">
+                                            class="avatar-sm">
                                     @else
                                         <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
                                     @endif

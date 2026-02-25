@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-4">
         @if ($user->avatar)
-            <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="img-thumbnail rounded-circle d-block mx-auto avatar-lg">
+            <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="d-block mx-auto avatar-lg">
         @else
             <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
         @endif
@@ -14,7 +14,7 @@
             </div>
             <div class="col p-2">
                 @if (Auth::user()->id === $user->id)
-                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm fw-bold">
+                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary btn-sm fw-bold">
                         Edit Profile
                     </a>
                 @else

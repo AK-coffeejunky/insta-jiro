@@ -395,6 +395,12 @@ a.post-image-seamless:hover {
     transition: border-color 0.3s ease;
 }
 
+.avatar-lg {
+    width: 9rem;
+    height: 9rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
 .input-apple-seamless:focus {
     outline: none !important;
     background-color: transparent !important;
@@ -402,6 +408,12 @@ a.post-image-seamless:hover {
     border-bottom: 2px solid var(--accent-blue) !important;
 }
 
+.avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
 /* Send Button */
 .btn-apple-send {
     color: var(--text-secondary);
@@ -434,6 +446,7 @@ a.post-image-seamless:hover {
 .btn-apple-follow-sm {
     font-size: 12px;
     padding: 5px 14px;
+    border-radius: 50%;
 }
 
 .btn-apple-follow:hover, .btn-apple-follow-sm:hover {
