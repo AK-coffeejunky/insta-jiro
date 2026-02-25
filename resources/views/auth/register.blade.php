@@ -5,63 +5,62 @@
 @section('content')
 
 <div class="auth-register-wrapper">
-    <div class="auth-register-card fade-in">
-        <h2 class="auth-register-title">Create Account</h2>
+
+    <div class="auth-register-container">
+        <!-- 戻るボタン -->
+        <a href="{{ route('login') }}" class="auth-register-back">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+
+        <div class="auth-register-logo">
+            <i class="auth-register-logo-icon fab fa-instagram"></i>
+            insta
+        </div>
+
+        <h2 class="auth-register-title">Create new account</h2>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div class="mb-4">
-                <input id="name" type="text"
-                    class="auth-register-input @error('name') is-invalid @enderror"
-                    name="name"
-                    value="{{ old('name') }}"
-                    placeholder="Name"
-                    required autofocus>
+            <input type="text"
+                name="name"
+                value="{{ old('name') }}"
+                placeholder="Full Name"
+                class="auth-register-input"
+                required autofocus>
 
-                @error('name')
-                    <div class="auth-register-error">{{ $message }}</div>
-                @enderror
-            </div>
+            <input type="email"
+                name="email"
+                value="{{ old('email') }}"
+                placeholder="Email"
+                class="auth-register-input"
+                required>
 
-            <div class="mb-4">
-                <input id="email" type="email"
-                    class="auth-register-input @error('email') is-invalid @enderror"
-                    name="email"
-                    value="{{ old('email') }}"
-                    placeholder="Email"
-                    required>
+            <input type="password"
+                name="password"
+                placeholder="Password"
+                class="auth-register-input"
+                required>
 
-                @error('email')
-                    <div class="auth-register-error">{{ $message }}</div>
-                @enderror
-            </div>
+            <input type="password"
+                name="password_confirmation"
+                placeholder="Confirm Password"
+                class="auth-register-input"
+                required>
 
-            <div class="mb-4">
-                <input id="password" type="password"
-                    class="auth-register-input @error('password') is-invalid @enderror"
-                    name="password"
-                    placeholder="Password"
-                    required>
-
-                @error('password')
-                    <div class="auth-register-error">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="mb-4">
-                <input id="password-confirm" type="password"
-                    class="auth-register-input"
-                    name="password_confirmation"
-                    placeholder="Confirm Password"
-                    required>
-            </div>
-
-            <button type="submit" class="auth-register-button">
+            <!-- Create -->
+            <button type="submit" class="auth-register-button primary">
                 Create Account
             </button>
+
+            <!-- Cancel -->
+            <a href="{{ route('login') }}" class="auth-register-button secondary">
+                Cancel
+            </a>
+
         </form>
     </div>
+
 </div>
 
 @endsection

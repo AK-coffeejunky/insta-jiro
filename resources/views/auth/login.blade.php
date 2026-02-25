@@ -4,16 +4,14 @@
 @section('hideNavbar', true)
 
 @section('content')
+<div>
+    <i class="fab fa-instagram auth-login-brand-logo"></i>
+</div>
+
 <div class="auth-login-wrapper">
     <!-- 左 -->
     <div class="auth-login-left">
         <div class="auth-login-form fade-in-left">
-
-            <!-- Instagram ロゴ＋テキスト -->
-            <div class="auth-login-brand">
-                <i class="fab fa-instagram auth-login-brand-logo"></i>
-                <span class="auth-login-brand-text">Instagram</span>
-            </div>
 
             <h2 class="auth-login-title">Login account</h2>
 
@@ -51,19 +49,7 @@
     </div>
 
     <!-- 右 -->
-    @php
-        // 使用する画像リスト
-        $images = [
-            '/images/bard.jpg',
-            '/images/dog.jpg',
-            '/images/lizard.jpg',
-        ];
-
-        // ランダムで1枚選択
-        $bgImage = $images[array_rand($images)];
-    @endphp
-
-    <div class="auth-login-right" style="background-image: url('{{ $bgImage }}')">
+    <div class="auth-login-right">
         <div class="auth-login-overlay">
             <h1 class="auth-login-text fade-in-right">
                 Follow your vibes.<br>
@@ -77,33 +63,92 @@
 
 @section('scripts')
 <script>
-const images = [
-    '/images/apple-style-1.jpg',
-    '/images/apple-style-2.jpg',
-    '/images/apple-style-3.jpg',
-];
+document.addEventListener("DOMContentLoaded", function () {
 
-let index = 0;
-const bgDiv = document.querySelector('.auth-login-right');
+    const images = [
+        "{{ asset('images/bard.jpg') }}",
+        "{{ asset('images/dog.jpg') }}",
+        "{{ asset('images/lizard.jpg') }}"
+    ];
 
-function changeBackground() {
-    // フェードアウト
-    bgDiv.style.opacity = 0;
+    const bgDiv = document.querySelector('.auth-login-right');
+    const text = document.querySelector('.auth-login-text');
+    let index = 0;
 
-    setTimeout(() => {
-        // 背景画像を変更
-        index = (index + 1) % images.length;
-        bgDiv.style.backgroundImage = `url('${images[index]}')`;
-        // フェードイン
-        bgDiv.style.opacity = 1;
-    }, 500); // 500msでフェードアウト後に切り替え
-}
+    // 初期画像設定
+    bgDiv.style.backgroundImage = `url('${images[index]}')`;
+    bgDiv.style.backgroundSize = "cover";
+    bgDiv.style.backgroundPosition = "center";
+    bgDiv.style.transition = "opacity 1s ease";
 
-// 初期値設定
-bgDiv.style.backgroundImage = `url('${images[0]}')`;
-bgDiv.style.transition = 'opacity 0.5s ease';
+    // 複数アニメーションパターン
+    const animations = [
+        function(progress) {
+            // 上下ゆらゆら
+            const y = Math.sin(progress * 2 * Math.PI) * 15;
+            return `translate(0px, ${y}px)`;
+        },
+        function(progress) {
+            // 左右スイング
+            const x = Math.sin(progress * 2 * Math.PI) * 15;
+            return `translate(${x}px, 0px)`;
+        },
+        function(progress) {
+            // 回転しながら上下
+            const y = Math.sin(progress * 2 * Math.PI) * 10;
+            const rot = Math.sin(progress * 2 * Math.PI) * 5;
+            return `translate(0px, ${y}px) rotate(${rot}deg)`;
+        },
+        function(progress) {
+            // ジグザグ
+            const x = Math.sin(progress * 2 * Math.PI * 1.5) * 10;
+            const y = Math.sin(progress * 2 * Math.PI) * 10;
+            return `translate(${x}px, ${y}px)`;
+        }
+    ];
 
-// 5秒ごとに切り替え
-setInterval(changeBackground, 5000);
+    let currentAnimation = null;
+
+    function animateText() {
+        const duration = 4000 + Math.random() * 4000; // 4~8秒周期
+        const start = performance.now();
+
+        function step(timestamp) {
+            const elapsed = timestamp - start;
+            const progress = (elapsed % duration) / duration;
+
+            if(currentAnimation) {
+                text.style.transform = currentAnimation(progress);
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    // 背景切替 & アニメーション更新
+    function changeBackground() {
+        bgDiv.style.opacity = 0;
+
+        setTimeout(() => {
+            // 背景切替
+            index = (index + 1) % images.length;
+            bgDiv.style.backgroundImage = `url('${images[index]}')`;
+            bgDiv.style.opacity = 1;
+
+            // ランダムアニメーション選択
+            currentAnimation = animations[Math.floor(Math.random() * animations.length)];
+        }, 1000);
+    }
+
+    // 初期アニメーション開始
+    currentAnimation = animations[Math.floor(Math.random() * animations.length)];
+    animateText();
+
+    // 5秒ごとに背景とアニメーション切替
+    setInterval(changeBackground, 5000);
+
+});
 </script>
 @endsection

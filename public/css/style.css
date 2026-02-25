@@ -219,9 +219,126 @@ body {
 /* =========================================
    5. The Discovery Carousel (横スクロール)
 ========================================= */
+<<<<<<< Updated upstream
 .discovery-section {
     width: 100%;
+=======
+.main-content-wrapper {
+    position: relative;
+    z-index: 10; /* Heroセクションの上に重なるように配置 */
+    padding-bottom: 200px;
+}
+
+.bento-card {
+    background-color: var(--bg-card);
+    border-radius: 30px; /* 妥協なき30ミリの曲線 */
+    padding: 40px; /* 圧倒的な余白 */
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* 極めて薄い影 */
+    /* overflow: hidden; */
+    transition:
+        transform 0.4s cubic-bezier(0.15, 0.83, 0.66, 1),
+        box-shadow 0.4s ease;
+}
+
+.bento-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.comment_btn {
+    color: var(--bs--body-bg);
+}
+
+.input-group:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Profile & Suggested Cards (サイドバー用の調整) */
+.profile-card {
+    padding: 30px; /* サイドバーは少しだけ余白を調整 */
+}
+
+.suggested-card {
+    padding: 30px;
+}
+
+.icon-sm {
+    font-size: 2rem;
+}
+
+.image-lg {
+    width: 9rem;
+    height: 9rem;
+    object-fit: cover;
+}
+
+.fa-heart {
+    font-size: 1.5rem;
+}
+
+.xsmall {
+    font-size: 0.65rem;
+}
+
+.icon-lg {
+    font-size: 9rem;
+}
+
+.grid-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.avatar-lg {
+    width: 9rem;
+    height: 9rem;
+    object-fit: cover;
+}
+
+.avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+}
+
+.icon-md {
+    font-size: 3.5rem;
+}
+
+.avatar-md {
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: cover;
+}
+
+/* nao */
+
+/* kei */
+/* login */
+/* ================== Login専用フルスクリーン ================== */
+.auth-login-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 1200px; /* ← 画面幅より少し広めに指定 */
+    max-width: 100%; /* 画面を超えないように制御 */
+    margin: 0 auto; /* 横中央に配置 */
     overflow: hidden;
+    flex-direction: row-reverse; /* 右に画像、左にフォーム */
+    gap: 120px; /* フォームと写真の間隔 */
+}
+
+
+.auth-login-brand-logo {
+    position: absolute;      /* 画面上に固定 */
+    top: 40px;               /* 上からの距離 */
+    left: 40px;              /* 左からの距離 */
+    z-index: 20;             /* 他の要素より前面に表示 */
+    font-size: 120px;         /* 大きさ調整 */
+    color: #E1306C;
+    margin-right: 8px;          /* インスタカラー */
 }
 
 .bento-carousel {
@@ -332,20 +449,178 @@ a.post-image-seamless:hover {
 .auth-login-wrapper, .auth-register-wrapper {
     display: flex;
     height: 100vh;
-    width: 100%;
+    width: 1200px; /* ← 画面幅より少し広めに指定 */
+    max-width: 100%; /* 画面を超えないように制御 */
+    margin: 0 auto; /* 横中央に配置 */
+>>>>>>> Stashed changes
+    overflow: hidden;
+    flex-direction: row-reverse; /* 右に画像、左にフォーム */
+    gap: 120px; /* フォームと写真の間隔 */
+}
+
+
+.auth-login-brand-logo {
+    position: absolute;      /* 画面上に固定 */
+    top: 40px;               /* 上からの距離 */
+    left: 40px;              /* 左からの距離 */
+    z-index: 20;             /* 他の要素より前面に表示 */
+    font-size: 120px;         /* 大きさ調整 */
+    color: #E1306C;
+    margin-right: 8px;          /* インスタカラー */
+}
+
+.bento-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.bento-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.compact-bento {
+    flex: 0 0 auto;
+    width: 200px;
+    padding: 24px;
+    scroll-snap-align: start;
+}
+
+/* =========================================
+   6. Post Components (投稿パーツ)
+========================================= */
+/* The Full Bleed Image */
+.post-image-seamless {
+    width: calc(100% + 80px);
+    margin-left: -40px;
+    margin-right: -40px;
+    border-radius: 0;
+    display: block;
+    object-fit: cover;
+    max-height: 600px;
+    transition: opacity 0.3s ease;
+}
+
+a.post-image-seamless:hover {
+    opacity: 0.95;
+}
+
+/* Seamless Comment Input */
+.input-apple-seamless {
+    border: none !important;
+    border-bottom: 1px solid var(--card-border) !important;
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    padding: 12px 0 !important;
+    box-shadow: none !important;
+    font-size: 1rem;
+    resize: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-apple-seamless:focus {
+    outline: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid var(--accent-blue) !important;
+}
+
+/* Send Button */
+.btn-apple-send {
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.btn-apple-send:hover {
+    color: var(--accent-blue);
+    transform: scale(1.1) translateY(-2px);
+}
+
+/* Apple Style Pill Button */
+.btn-apple-follow, .btn-apple-follow-sm {
+    background-color: #f0f0f5;
+    color: var(--accent-blue);
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.btn-apple-follow {
+    font-size: 14px;
+    padding: 6px 18px;
+}
+
+.btn-apple-follow-sm {
+    font-size: 12px;
+    padding: 5px 14px;
+}
+
+.btn-apple-follow:hover, .btn-apple-follow-sm:hover {
+    background-color: var(--accent-blue);
+    color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+/* =========================================
+   7. Authentication Pages (ログイン/登録)
+========================================= */
+.auth-login-wrapper, .auth-register-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 1200px; /* ← 画面幅より少し広めに指定 */
+    max-width: 100%; /* 画面を超えないように制御 */
+    margin: 0 auto; /* 横中央に配置 */
     overflow: hidden;
     background-color: var(--bg-page); /* 全体の背景色を統一 */
+    flex-direction: row-reverse; /* 右に画像、左にフォーム */
+    gap: 120px; /* フォームと写真の間隔 */
+}
+
+
+.auth-login-brand-logo {
+    position: absolute;      /* 画面上に固定 */
+    top: 40px;               /* 上からの距離 */
+    left: 40px;              /* 左からの距離 */
+    z-index: 20;             /* 他の要素より前面に表示 */
+    font-size: 120px;         /* 大きさ調整 */
+    color: #E1306C;
+    margin-right: 8px;          /* インスタカラー */
 }
 
 .auth-login-left {
-    flex: 1;
+    flex: 0.3;
+    flex: 0.3;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    height: 100%;            /* 親に合わせて高さ100% */
+    padding-top: 200px;
+    
+    align-items: flex-start;
+    height: 100%;            /* 親に合わせて高さ100% */
+    padding-top: 200px;
+    
 }
 
 .auth-login-card, .auth-register-card {
     width: 400px;
+}
+.auth-login-card {
+    width: 100%;        /* 親コンテナに合わせる */
+    max-width: 900px;   /* 最大幅を指定して画面幅に合わせる */
+    width: 100%;        /* 親コンテナに合わせる */
+    max-width: 900px;   /* 最大幅を指定して画面幅に合わせる */
+>>>>>>> Stashed changes
     padding: 40px;
     border-radius: 30px; /* Bento Gridと合わせる */
     background: var(--bg-card); /* 半透明からBentoのグレーへ */
@@ -358,6 +633,25 @@ a.post-image-seamless:hover {
 .auth-login-input, .auth-register-input {
     width: 100%;
     padding: 14px;
+}
+.auth-login-title {
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 25px;
+    font-size: 25px;
+}
+
+.auth-login-field {
+    margin-bottom: 15px;
+}
+
+.auth-login-input {
+    width: 100%;         /* 100%でカード幅いっぱいに */
+    max-width: 850px;
+    padding: 14px 20px;  /* 左右パディングも少し増やす */
+    width: 100%;         /* 100%でカード幅いっぱいに */
+    max-width: 850px;
+    padding: 14px 20px;  /* 左右パディングも少し増やす */
     border-radius: 12px;
     border: 1px solid var(--nav-border);
     outline: none;
@@ -365,6 +659,7 @@ a.post-image-seamless:hover {
     background-color: var(--bg-page);
 }
 
+<<<<<<< Updated upstream
 .auth-login-input:focus, .auth-register-input:focus {
     border-color: var(--accent-blue);
     box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2);
@@ -377,7 +672,43 @@ a.post-image-seamless:hover {
     border: none;
     background: var(--text-primary);
     color: var(--bg-page);
+=======
+.auth-login-form {
+    width: 100%;
+    max-width: 900px; /* カードより大きめに */
+}
+
+.auth-login-form {
+    width: 100%;
+    max-width: 900px; /* カードより大きめに */
+}
+
+.auth-login-form {
+    width: 100%;
+    max-width: 900px; /* カードより大きめに */
+}
+
+.auth-login-input:focus {
+    border-color: #0071e3;
+    box-shadow: 0 0 0 3px rgba(0,113,227,0.2);
+}
+
+/* ===== Create Account Button Upgrade ===== */
+/* ===== Create Account Button Upgrade ===== */
+.auth-login-button {
+    width: 100%;
+    background: linear-gradient(135deg, #000000, #1c1c1e);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #000000, #1c1c1e);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
     font-weight: 600;
+    letter-spacing: 0.5px;
+    letter-spacing: 0.5px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -385,16 +716,34 @@ a.post-image-seamless:hover {
 .auth-login-button:hover, .auth-register-button:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.auth-login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.auth-login-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+>>>>>>> Stashed changes
 }
 
 .auth-login-right {
-    flex: 1;
+    flex: 0.7;
+    height: 70%;            /* フォームに合わせる */
+    max-height: none;        /* 上限を解除してフォームに揃える */
+    flex: 0.7;
+    height: 70%;            /* フォームに合わせる */
+    max-height: none;        /* 上限を解除してフォームに揃える */
     position: relative;
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< Updated upstream
     opacity: 1;
     animation: fadeInRight 1.2s ease forwards;
 }
@@ -410,3 +759,233 @@ a.post-image-seamless:hover {
 .icon-sm { font-size: 36px; }
 .icon-md { font-size: 56px; }
 .icon-lg { font-size: 9rem; }
+=======
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+
+.auth-login-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 右下テキスト */
+/* 右下テキスト */
+.auth-login-text {
+    position: absolute;
+    bottom: 60px;
+    right: 70px;
+    position: absolute;
+    bottom: 60px;
+    right: 70px;
+    color: white;
+    font-size: 44px;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: right;
+    text-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    animation: floatText 6s ease-in-out infinite; /* 速度はそのままでもOK */
+    line-height: 1.3;
+    text-align: right;
+    text-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    animation: floatText 6s ease-in-out infinite; /* 速度はそのままでもOK */
+}
+
+/* ================== アニメーション ================== */
+
+
+@keyframes fadeInRight {
+    0% { opacity: 0; transform: translateX(50px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+
+
+/* register */
+/* ===== Minimal Register (No Card / No Gray BG) ===== */
+/* ===== Minimal Register (No Card / No Gray BG) ===== */
+
+.auth-register-wrapper {
+    min-height: 75vh;
+    background: #ffffff; /* 白背景 */
+    min-height: 75vh;
+    background: #ffffff; /* 白背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 戻る */
+.auth-register-back {
+    font-size: 22px;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.auth-register-back:hover {
+    opacity: 0.6;
+}
+
+/* コンテナ（カードなし） */
+.auth-register-container {
+    width: 380px;
+    text-align: left;
+}
+
+/* ロゴ */
+.auth-register-logo {
+    font-size: 20px;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.auth-register-logo-icon {
+    font-size: 20px;
+    color: #E1306C;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+/* 戻る */
+.auth-register-back {
+    font-size: 22px;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.auth-register-back:hover {
+    opacity: 0.6;
+}
+
+/* コンテナ（カードなし） */
+.auth-register-container {
+    width: 380px;
+    text-align: left;
+}
+
+/* ロゴ */
+.auth-register-logo {
+    font-size: 20px;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.auth-register-logo-icon {
+    font-size: 20px;
+    color: #E1306C;
+    margin-bottom: 5px;
+}
+
+/* タイトル */
+/* タイトル */
+.auth-register-title {
+    font-size: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* 入力欄（下線タイプでInstagram寄り） */
+/* 入力欄（下線タイプでInstagram寄り） */
+.auth-register-input {
+    width: 100%;         /* 100%でカード幅いっぱいに */
+    max-width: 850px;
+    padding: 14px 20px;  /* 左右パディングも少し増やす */
+    width: 100%;         /* 100%でカード幅いっぱいに */
+    max-width: 850px;
+    padding: 14px 20px;  /* 左右パディングも少し増やす */
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.auth-register-input:focus {
+    border-color: #0071e3;
+    box-shadow: 0 0 0 3px rgba(0,113,227,0.2);
+    box-shadow: 0 0 0 3px rgba(0,113,227,0.2);
+}
+
+/* ボタン共通 */
+/* ボタン共通 */
+.auth-register-button {
+    display: block;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+/* 黒ボタン */
+/* ===== Create Account Button Upgrade ===== */
+.auth-register-button.primary {
+    background: linear-gradient(135deg, #000000, #1c1c1e);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auth-register-button.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.auth-register-button.primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Cancel */
+.auth-register-button.secondary {
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 14px;
+    padding: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 控えめなホバー: 薄いグレーで少し浮く感じ */
+.auth-register-button.secondary:hover {
+    background: rgba(0,0,0,0.05); /* 真っ黒じゃなく薄い黒 */
+    color: #000;                  /* 色はそのまま */
+    transform: translateY(-2px);  /* ほんの少し浮く */
+/* 控えめなホバー: 薄いグレーで少し浮く感じ */
+.auth-register-button.secondary:hover {
+    background: rgba(0,0,0,0.05); /* 真っ黒じゃなく薄い黒 */
+    color: #000;                  /* 色はそのまま */
+    transform: translateY(-2px);  /* ほんの少し浮く */
+}
+
+.auth-register-button.secondary:active {
+    transform: scale(0.98);       /* 押した感 */
+}
