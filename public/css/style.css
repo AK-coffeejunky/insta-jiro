@@ -187,6 +187,7 @@ body {
     overflow: hidden;
     background-color: var(--bg-page);
     margin-bottom: 5%; /* 25%は広すぎたため微調整 */
+    font-family: "Inter", sans-serif;
 }
 
 .hero-content {
