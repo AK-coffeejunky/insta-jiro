@@ -1,4 +1,5 @@
-<div class="card-header bg-white py-3">
+
+<div class="mb-4">
     <div class="row align-items-center">
         <div class="col-auto">
             <a href="{{ route('profile.show', $post->user->id)}}">
@@ -46,3 +47,4 @@
         </div>
     </div>
 </div>
+                    
