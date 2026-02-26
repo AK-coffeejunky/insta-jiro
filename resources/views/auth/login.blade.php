@@ -4,10 +4,6 @@
 @section('hideNavbar', true)
 
 @section('content')
-<div>
-    <i class="fab fa-instagram auth-login-brand-logo"></i>
-</div>
-
 <div class="auth-login-wrapper">
     <!-- 左 -->
     <div class="auth-login-left">
@@ -50,6 +46,8 @@
 
     <!-- 右 -->
     <div class="auth-login-right">
+        <div class="bg-layer current"></div>
+        <div class="bg-layer next"></div>
         <div class="auth-login-overlay">
             <h1 class="auth-login-text fade-in-right">
                 Follow your vibes.<br>
@@ -57,8 +55,33 @@
             </h1>
         </div>
     </div>
-
 </div>
+@endsection
+
+@section('styles')
+<style>
+.auth-login-right {
+    position: relative;
+    overflow: hidden;
+}
+.bg-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease;
+}
+.bg-layer.next {
+    opacity: 0;
+}
+.auth-login-overlay {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+}
+</style>
 @endsection
 
 @section('scripts')
@@ -71,82 +94,60 @@ document.addEventListener("DOMContentLoaded", function () {
         "{{ asset('images/lizard.jpg') }}"
     ];
 
-    const bgDiv = document.querySelector('.auth-login-right');
+    const currentLayer = document.querySelector('.bg-layer.current');
+    const nextLayer = document.querySelector('.bg-layer.next');
     const text = document.querySelector('.auth-login-text');
+
     let index = 0;
 
-    // 初期画像設定
-    bgDiv.style.backgroundImage = `url('${images[index]}')`;
-    bgDiv.style.backgroundSize = "cover";
-    bgDiv.style.backgroundPosition = "center";
-    bgDiv.style.transition = "opacity 1s ease";
+    // 初期画像
+    currentLayer.style.backgroundImage = `url('${images[index]}')`;
 
-    // 複数アニメーションパターン
+    // アニメーションパターン
     const animations = [
-        function(progress) {
-            // 上下ゆらゆら
-            const y = Math.sin(progress * 2 * Math.PI) * 15;
-            return `translate(0px, ${y}px)`;
-        },
-        function(progress) {
-            // 左右スイング
-            const x = Math.sin(progress * 2 * Math.PI) * 15;
-            return `translate(${x}px, 0px)`;
-        },
-        function(progress) {
-            // 回転しながら上下
-            const y = Math.sin(progress * 2 * Math.PI) * 10;
-            const rot = Math.sin(progress * 2 * Math.PI) * 5;
-            return `translate(0px, ${y}px) rotate(${rot}deg)`;
-        },
-        function(progress) {
-            // ジグザグ
-            const x = Math.sin(progress * 2 * Math.PI * 1.5) * 10;
-            const y = Math.sin(progress * 2 * Math.PI) * 10;
-            return `translate(${x}px, ${y}px)`;
-        }
+        // p => `translate(0px, ${Math.sin(p*2*Math.PI)*15}px)`,
+        p => `translate(${Math.sin(p*2*Math.PI)*15}px, 0px)`
+        // p => `translate(0px, ${Math.sin(p*2*Math.PI)*10}px) rotate(${Math.sin(p*2*Math.PI)*5}deg)`,
+        // p => `translate(${Math.sin(p*2*Math.PI*1.5)*10}px, ${Math.sin(p*2*Math.PI)*10}px)`
     ];
+    let currentAnimation = animations[Math.floor(Math.random()*animations.length)];
 
-    let currentAnimation = null;
-
+    // テキストアニメーション
     function animateText() {
-        const duration = 4000 + Math.random() * 4000; // 4~8秒周期
+        const duration = 4000 + Math.random() * 4000;
         const start = performance.now();
 
-        function step(timestamp) {
+        function step(timestamp){
             const elapsed = timestamp - start;
-            const progress = (elapsed % duration) / duration;
-
-            if(currentAnimation) {
-                text.style.transform = currentAnimation(progress);
-            }
-
+            const progress = (elapsed % duration)/duration;
+            if(currentAnimation) text.style.transform = currentAnimation(progress);
             requestAnimationFrame(step);
         }
-
         requestAnimationFrame(step);
     }
+    animateText();
 
-    // 背景切替 & アニメーション更新
+    // 背景クロスフェード
     function changeBackground() {
-        bgDiv.style.opacity = 0;
+        index = (index + 1) % images.length;
+        nextLayer.style.backgroundImage = `url('${images[index]}')`;
 
+        // フェードイン
+        nextLayer.style.opacity = 0;
+        requestAnimationFrame(() => {
+            nextLayer.style.opacity = 1;
+        });
+
+        // フェード完了後に current を更新
         setTimeout(() => {
-            // 背景切替
-            index = (index + 1) % images.length;
-            bgDiv.style.backgroundImage = `url('${images[index]}')`;
-            bgDiv.style.opacity = 1;
+            currentLayer.style.backgroundImage = `url('${images[index]}')`;
+            nextLayer.style.opacity = 0;
 
-            // ランダムアニメーション選択
-            currentAnimation = animations[Math.floor(Math.random() * animations.length)];
+            // 新しいテキストアニメーション選択
+            currentAnimation = animations[Math.floor(Math.random()*animations.length)];
         }, 1000);
     }
 
-    // 初期アニメーション開始
-    currentAnimation = animations[Math.floor(Math.random() * animations.length)];
-    animateText();
-
-    // 5秒ごとに背景とアニメーション切替
     setInterval(changeBackground, 5000);
 
 });

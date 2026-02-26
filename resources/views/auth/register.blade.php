@@ -12,16 +12,13 @@
             <i class="fas fa-chevron-left"></i>
         </a>
 
-        <div class="auth-register-logo">
-            <i class="auth-register-logo-icon fab fa-instagram"></i>
-            insta
-        </div>
-
         <h2 class="auth-register-title">Create new account</h2>
+        <div>Sign up to see photos and videos from your friends.</div>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
+            <div class="auth-register-subtitle">Full Name</div>
             <input type="text"
                 name="name"
                 value="{{ old('name') }}"
@@ -29,6 +26,8 @@
                 class="auth-register-input"
                 required autofocus>
 
+
+            <div class="auth-register-subtitle">Email</div>
             <input type="email"
                 name="email"
                 value="{{ old('email') }}"
@@ -36,12 +35,14 @@
                 class="auth-register-input"
                 required>
 
+            <div class="auth-register-subtitle">Password</div>
             <input type="password"
                 name="password"
                 placeholder="Password"
                 class="auth-register-input"
                 required>
 
+            <div class="auth-register-subtitle">Confirm Password</div>
             <input type="password"
                 name="password_confirmation"
                 placeholder="Confirm Password"
@@ -50,7 +51,7 @@
 
             <!-- Create -->
             <button type="submit" class="auth-register-button primary">
-                Create Account
+                {{ __('Create Account') }}
             </button>
 
             <!-- Cancel -->
