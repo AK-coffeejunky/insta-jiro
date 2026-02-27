@@ -14,7 +14,7 @@
             </div>
             <div class="col p-2">
                 @if (Auth::user()->id === $user->id)
-                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary btn-sm fw-bold">
+                    <a href="{{ route('profile.edit') }}" class="apple-button-primary">
                         Edit Profile
                     </a>
                 @else
@@ -53,3 +53,22 @@
         <p class="fw-bold">{{ $user->introduction }}</p>
 
     </div>
+
+    <style>
+        .apple-button-primary {
+        background: #0071e3;
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 980px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        
+    }
+
+    .apple-button-primary:hover {
+        background: #0077ed;
+        opacity: 0.9;
+    }
+    </style>
