@@ -10,6 +10,9 @@ class CategoryPost extends Model
     protected $fillable = ['category_id', 'post_id'];
     public $timestamps = false;
 
+    protected $primaryKey = ['category_id', 'post_id'];
+    public $incrementing = false;
+
     #To get the name of teh category
     public function category(){
         return $this->belongsTo(Category::class);
