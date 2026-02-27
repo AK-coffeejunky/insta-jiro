@@ -3,7 +3,7 @@
 @section('title', 'Admin: Posts')
 
 @section('content')
-    <table class="table table-hover align-middle bg-white border text-secondary">
+    <table class="table table-hover align-middle border text-secondary">
         <thead class="small table-success text-secondary">
             <th></th>
             <th>CATEGORY</th>

@@ -4,10 +4,6 @@
 @section('hideNavbar', true)
 
 @section('content')
-<div>
-    <i class="fab fa-instagram auth-login-brand-logo"></i>
-</div>
-
 <div class="auth-login-wrapper">
     <!-- 左 -->
     <div class="auth-login-left">
