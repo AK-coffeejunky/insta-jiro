@@ -25,7 +25,7 @@
                     {{ session('error_message') }}
                 </div>
             @endif
-            <table class="table table-hover align-middle">
+            <table class="table table-hover align-middle align-middle border text-secondary">
                 <thead class="thead-light table-warning">
                     <tr>
                         <th>#</th>
@@ -52,9 +52,6 @@
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
-                        <tr>
-
-                        </tr>
 
                         </tr>
 

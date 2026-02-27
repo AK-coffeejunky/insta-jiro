@@ -71,9 +71,12 @@ body {
 
 .h1 {
     font-size: 30px;
-    font-family: "Dancing Script", cursive;
-    font-style: italic;
-    text-shadow: 1px 1px 0px #652fee, 2px 2px 0px #cf288c, 3px 3px 0px #67cfea, 4px 4px 0px #f532b0;
+    background: linear-gradient(135deg, #1100fa 0%, #ee2f2f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.1));
 }
 
 .fa-instagram {
@@ -137,8 +140,8 @@ body {
 }
 
 .navbar-nav .dropdown-menu.show .dropdown-item:nth-child(1) { animation-delay: 0.1s; }
-.navbar-nav .dropdown-menu.show .dropdown-item:nth-child(2) { animation-delay: 0.15s; }
-.navbar-nav .dropdown-menu.show .dropdown-item:nth-child(3) { animation-delay: 0.2s; }
+.navbar-nav .dropdown-menu.show .dropdown-item:nth-child(2) { animation-delay: 0.2s; }
+.navbar-nav .dropdown-menu.show .dropdown-item:nth-child(3) { animation-delay: .0.3s; }
 
 .navbar-nav .dropdown-item {
     opacity: 0;
@@ -1017,6 +1020,31 @@ a.post-image-seamless:hover {
     transform: scale(0.98);       /* 押した感 */
 }
 
+<<<<<<< HEAD
+/* admin */
+
+/* .admin-container .table tbody tr:nth-of-type(odd) {
+    background-color: #ffffff !important; 
+}
+
+.admin-container .table tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa !important;
+}
+
+.admin-container .table td {
+    border-bottom: 1px solid #ececec !important;
+    border-top: none !important;
+}
+
+.admin-container .table tbody tr {
+    transition: background-color 0.2s ease-in-out !important;
+}
+
+.admin-container .table tbody tr:hover {
+    background-color: #f0f0f0 !important;
+    cursor: pointer;
+} */
+=======
 .bg-layer {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -1032,3 +1060,4 @@ a.post-image-seamless:hover {
 .auth-login-footer{
     padding: 14px;
 }
+>>>>>>> b7f07f3b6340efd4b58165140492e8f296aa4b94
