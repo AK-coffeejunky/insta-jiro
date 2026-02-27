@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -33,7 +34,7 @@ class ProfileController extends Controller
             'name'          => 'required|min:1|max:150',
             'email'         => 'required|email|max:50|unique:users,email,' .
             Auth::user()->id,
-            'avatar'        => 'required|mimes:jpeg,jpg,png,gif|max:1048',
+            'avatar'        => 'nullable|image|max:1048',
             'introduction'  => 'max:100'
         ]);
 
@@ -42,9 +43,9 @@ class ProfileController extends Controller
         $user->email        = $request->email;
         $user->introduction = $request->introduction;
 
-        if($request->avatar) {
-            $user->avatar = 'data:image/' . $request->avatar->extension() . ';base64,' . base64_encode(file_get_contents($request->avatar));
-        }
+       if($request->avatar){
+        $user->avatar = 'data:image/' . $request->avatar->extension() . ';base64,' . base64_encode( file_get_contents($request->avatar));
+       }
 
         #Save
         $user->save();

@@ -382,7 +382,7 @@ body {
     transition: opacity 0.3s ease;
 }
 
-a.post-image-seamless:hover {
+.post-image-seamless:hover {
     opacity: 0.95;
 }
 
@@ -463,7 +463,7 @@ a.post-image-seamless:hover {
 /* =========================================
    7. Authentication Pages (ログイン/登録)
 ========================================= */
-.auth-login-wrapper, .auth-register-wrapper {
+.auth-login-wrapper {
     display: flex;
     height: 100vh;
     width: 1200px; /* ← 画面幅より少し広めに指定 */
@@ -472,6 +472,15 @@ a.post-image-seamless:hover {
     overflow: hidden;
     flex-direction: row-reverse; /* 右に画像、左にフォーム */
     gap: 120px; /* フォームと写真の間隔 */
+}
+
+.auth-register-wrapper {
+    display: flex;
+    height: 50vh;
+    width: 1200px; /* ← 画面幅より少し広めに指定 */
+    max-width: 100%; /* 画面を超えないように制御 */
+    margin: 0 auto; /* 横中央に配置 */
+    overflow: hidden;
 }
 
 
@@ -726,6 +735,7 @@ a.post-image-seamless:hover {
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
 }
 
 .auth-login-button:hover, .auth-register-button:hover {
@@ -825,24 +835,22 @@ a.post-image-seamless:hover {
 
 /* register */
 /* ===== Minimal Register (No Card / No Gray BG) ===== */
-/* ===== Minimal Register (No Card / No Gray BG) ===== */
 
 .auth-register-wrapper {
-    min-height: 75vh;
-    background: #ffffff; /* 白背景 */
-    min-height: 75vh;
-    background: #ffffff; /* 白背景 */
+    min-height: 50vh;
+    background: #ffffff; 
     display: flex;
     justify-content: center;
-    align-items: center;
+
     position: relative;
+    padding-top: 10px;
 }
 
-/* 戻る */
 .auth-register-back {
     font-size: 22px;
     color: #000;
     text-decoration: none;
+    margin-top: 50;
     margin-bottom: 5px;
 }
 
@@ -854,6 +862,7 @@ a.post-image-seamless:hover {
 .auth-register-container {
     width: 380px;
     text-align: left;
+    margin-top: 0;
 }
 
 /* ロゴ */
@@ -908,7 +917,15 @@ a.post-image-seamless:hover {
     font-weight: 600;
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 2px;
+}
+
+.auth-register-subtitle {
+    font-size: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
 /* 入力欄（下線タイプでInstagram寄り） */
@@ -1003,6 +1020,7 @@ a.post-image-seamless:hover {
     transform: scale(0.98);       /* 押した感 */
 }
 
+<<<<<<< HEAD
 /* admin */
 
 /* .admin-container .table tbody tr:nth-of-type(odd) {
@@ -1026,3 +1044,20 @@ a.post-image-seamless:hover {
     background-color: #f0f0f0 !important;
     cursor: pointer;
 } */
+=======
+.bg-layer {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease;
+}
+
+.bg-layer.next {
+    opacity: 0;
+}
+
+.auth-login-footer{
+    padding: 14px;
+}
+>>>>>>> b7f07f3b6340efd4b58165140492e8f296aa4b94
