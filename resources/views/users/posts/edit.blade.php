@@ -3,61 +3,122 @@
 @section('title', 'Edit Post')
 
 @section('content')
-    <form action="{{ route('post.update', $post->id)}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('PATCH')
+<div class="container main-content-wrapper mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            
+            {{-- 戻るボタン --}}
+            <a href="{{ route('post.show', $post->id) }}" class="btn-apple-back mb-3">
+                <i class="fa-solid fa-arrow-left me-2"></i>Cancel
+            </a>
 
-        <div class="mb-3">
-            <label for="" class="form-label d-block fw-bold">
-                Category <span class="text-muted fw-normal">(up to 3)</span>
-            </label>
+            {{-- 研磨のためのBento Card --}}
+            <div class="bento-card p-5">
+                <h2 class="fw-bold mb-4 text-center" style="letter-spacing: -0.02em;">Edit Post</h2>
 
-            @foreach ($all_categories as $category)
-                <div class="form-check form-check-inline">
-                    @if (in_array($category->id, $selected_categories))
-                    <input type="checkbox" name="category[]" id="{{ $category->name }}" value="{{ $category->id }}"
-                        class="form-check-input" checked>
+                <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('PATCH')
+
+                    {{-- 1. IMAGE UPLOAD (The Darkroom Preview) --}}
+                    <div class="mb-5">
+                        <label class="form-label fw-bold mb-2">Photo</label>
+                        {{-- すでに画像があるので、最初から「暗室（黒背景＋実線）」の状態で表示する --}}
+                        <div class="apple-file-upload-wrapper" id="upload-wrapper" 
+                             style="border-style: solid; border-color: var(--card-border); background-color: #000000;">
+                            
+                            {{-- 透明なinput --}}
+                            <input type="file" name="image" id="image" class="apple-file-upload-input" 
+                                accept="image/jpeg, image/png, image/jpg, image/gif" 
+                                onchange="previewImage(event)">
+                            
+                            {{-- ホバー時に現れる魔法のオーバーレイ --}}
+                            <div class="apple-edit-overlay">
+                                <i class="fa-solid fa-camera-rotate"></i>
+                                <span class="fw-bold" style="letter-spacing: 0.05em;">Change Photo</span>
+                            </div>
+
+                            {{-- 現在の画像（または新しく選んだ画像）をフルサイズで表示 --}}
+                            <img id="image-preview" src="{{ $post->image }}" alt="Current Post Image" class="w-100 h-100" 
+                                style="object-fit: contain; border-radius: 18px; position: absolute; top: 0; left: 0; pointer-events: none; z-index: 0;">
+                        </div>
                         
-                    @else
-                    <input type="checkbox" name="category[]" id="{{ $category->name }}" value="{{ $category->id }}"
-                        class="form-check-input">
-                        
-                    @endif
-                    <label for="{{ $category->name }}" class="form-check-label">{{ $category->name }}</label>
-                </div>
-            @endforeach
-            {{-- Error --}}
-            @error('category')
-                <div class="text-danger small">{{ $message }}</div>
-            @enderror
-        </div>
+                        <div id="image-info" class="form-text mt-2 text-secondary small">
+                            Leave this blank if you don't want to change the photo. (Max: 1MB)
+                        </div>
 
-        <div class="mb-3">
-            <label for="description" class="form-label fw-bold">Description</label>
-            <textarea name="description" id="description" rows="3" class="form-control" placeholder="What's on your mind">{{ old('description', $post->description) }}</textarea>
-            {{-- Error --}}
-            @error('description')
-                <div class="text-danger small">{{ $message }}</div>
-            @enderror
-        </div>
+                        @error('image')
+                            <div class="text-danger small mt-2 fw-bold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ $message }}</div>
+                        @enderror
+                    </div>
 
-        <div class="row mb-4">
-            <div class="col-6">
-                <label for="image" class="form-label fw-bold">Image</label>
-                <img src="{{ $post->image }}" alt="post id" class="img-thumbnail w-100">
-                <input type="file" name="image" id="image" class="form-control mt-1" aria-describedby="image-info">
-                <div id="image-info" class="form-text">
-                    The acceptable formats are jpeg, jpg, png, and gif only. <br>
-                    Max file size is 1048kB.
-                </div>
-                {{-- Error --}}
-                @error('image')
-                    <div class="text-danger small">{{ $message }}</div>
-                @enderror
+                    {{-- 2. DESCRIPTION (シームレスな入力欄) --}}
+                    <div class="mb-5">
+                        <label for="description" class="form-label fw-bold mb-1">Description</label>
+                        <textarea name="description" id="description" rows="3" 
+                            class="form-control input-apple-seamless" 
+                            placeholder="Write a caption...">{{ old('description', $post->description) }}</textarea>
+                        @error('description')
+                            <div class="text-danger small mt-2 fw-bold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- 3. CATEGORIES (iOS風のピル・ボタン) --}}
+                    <div class="mb-5">
+                        <label class="form-label d-block fw-bold mb-3">
+                            Category <span class="text-secondary fw-normal ms-1" style="font-size: 0.85rem;">(Select up to 3)</span>
+                        </label>
+
+                        <div>
+                            @foreach ($all_categories as $category)
+                                {{-- in_array で美しく判定 --}}
+                                <input type="checkbox" name="category[]" id="cat_{{ $category->id }}" value="{{ $category->id }}" 
+                                       class="apple-category-checkbox" 
+                                       {{ in_array($category->id, $selected_categories) ? 'checked' : '' }}>
+                                <label for="cat_{{ $category->id }}" class="apple-category-label">
+                                    {{ $category->name }}
+                                </label>
+                            @endforeach
+                        </div>
+                        @error('category')
+                            <div class="text-danger small mt-2 fw-bold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- 4. SUBMIT TRIGGER --}}
+                    <div class="mt-5">
+                        <button type="submit" class="btn-apple-submit">
+                            Save Changes
+                        </button>
+                    </div>
+
+                </form>
             </div>
-
+            
         </div>
+    </div>
+</div>
 
-        <button type="submit" class="btn btn-warning px-5">Save</button>
-    </form>
+{{-- THE MAGIC SCRIPT (Image Preview) --}}
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const reader = new FileReader();
+
+        reader.onload = function() {
+            const preview = document.getElementById('image-preview');
+            const wrapper = document.getElementById('upload-wrapper');
+
+            // 読み込んだ新しい画像データをセット
+            preview.src = reader.result;
+            
+            // 変更が加えられたことを視覚的にフィードバック（青い枠線）
+            wrapper.style.borderColor = "var(--accent-blue)";
+        };
+
+        if (input.files && input.files[0]) {
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endsection

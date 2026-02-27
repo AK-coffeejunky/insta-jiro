@@ -801,7 +801,6 @@ a.post-image-seamless:hover {
 }
 
 /* 右下テキスト */
-/* 右下テキスト */
 .auth-login-text {
     position: absolute;
     bottom: 60px;
@@ -1020,7 +1019,7 @@ a.post-image-seamless:hover {
     transform: scale(0.98);       /* 押した感 */
 }
 
-<<<<<<< HEAD
+
 /* admin */
 
 /* .admin-container .table tbody tr:nth-of-type(odd) {
@@ -1044,7 +1043,7 @@ a.post-image-seamless:hover {
     background-color: #f0f0f0 !important;
     cursor: pointer;
 } */
-=======
+
 .bg-layer {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -1060,4 +1059,225 @@ a.post-image-seamless:hover {
 .auth-login-footer{
     padding: 14px;
 }
->>>>>>> b7f07f3b6340efd4b58165140492e8f296aa4b94
+
+
+/* =========================================
+   9. Post Detail (The Split Window)
+========================================= */
+.bento-split-card {
+    background-color: var(--bg-page);
+    border-radius: 30px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* 角丸を突き破る画像を美しく切り取る */
+    height: 75vh; /* 画面の高さに合わせて美しく収まる */
+    min-height: 600px;
+}
+
+/* 左側：漆黒のキャンバス */
+.split-left {
+    background-color: #000000; /* 写真を際立たせるための純黒 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.split-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ▼ The Magic: coverからcontainへ変更 */
+    background-color: #000000; /* 写真の上下（または左右）の余白は漆黒で満たす *//* 画像の比率を保ちながら隙間なく埋める */
+}
+
+/* 右側：対話の空間 */
+.split-right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--bg-page);
+}
+
+.split-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.split-body {
+    padding: 24px 32px;
+    flex-grow: 1; /* 残りの空間をすべて埋める */
+    overflow-y: auto; /* ここだけが美しくスクロールする */
+}
+
+.split-footer {
+    padding: 16px 32px;
+    border-top: 1px solid var(--card-border);
+    background-color: var(--bg-page);
+}
+
+/* =========================================
+   10. Navigation Buttons (帰還の扉)
+========================================= */
+.btn-apple-back {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.btn-apple-back i {
+    transition: transform 0.3s ease;
+}
+
+/* ホバー時に文字が濃くなり、矢印がスッと左へ動く（Micro-Interaction） */
+.btn-apple-back:hover {
+    color: var(--text-primary);
+}
+.btn-apple-back:hover i {
+    transform: translateX(-4px); 
+}
+
+/* =========================================
+   11. Create Post (創造のキャンバス)
+========================================= */
+
+/* A. 魔法の画像アップロードエリア */
+.apple-file-upload-wrapper {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    border: 2px dashed var(--card-border);
+    border-radius: 20px;
+    background-color: var(--bg-page); /* 少し奥まった印象を与える */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.apple-file-upload-wrapper:hover {
+    border-color: var(--accent-blue);
+    background-color: rgba(0, 113, 227, 0.03); /* ホバー時に青いオーラを放つ */
+}
+
+/* システムの不恰好なボタンを透明にして被せる */
+.apple-file-upload-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.apple-file-upload-icon {
+    font-size: 3rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+
+.apple-file-upload-wrapper:hover .apple-file-upload-icon {
+    color: var(--accent-blue);
+    transform: translateY(-5px);
+}
+
+/* B. iOSスタイルのカテゴリ・トグルボタン */
+.apple-category-checkbox {
+    display: none; /* デフォルトの四角いチェックボックスを消去 */
+}
+
+.apple-category-label {
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+
+.apple-category-label:hover {
+    background-color: rgba(0,0,0,0.03);
+    color: var(--text-primary);
+}
+
+/* 選択（チェック）された時の鮮やかな変化 */
+.apple-category-checkbox:checked + .apple-category-label {
+    background-color: var(--text-primary);
+    color: var(--bg-page);
+    border-color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* C. 大型の送信トリガー */
+.btn-apple-submit {
+    background-color: var(--text-primary);
+    color: var(--bg-page);
+    border-radius: 50px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.btn-apple-submit:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   12. Edit Post (暗室での研磨)
+========================================= */
+/* 画像変更を促す魔法のオーバーレイ */
+.apple-edit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    z-index: 1; /* 画像の上、inputの下に配置 */
+    pointer-events: none; /* クリックは透過させる */
+}
+
+/* ホバーした時にフワリと浮かび上がる */
+.apple-file-upload-wrapper:hover .apple-edit-overlay {
+    opacity: 1;
+}
+
+.apple-edit-overlay i {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    transform: translateY(10px);
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.apple-file-upload-wrapper:hover .apple-edit-overlay i {
+    transform: translateY(0);
+}
