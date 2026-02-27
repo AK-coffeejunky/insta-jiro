@@ -62,7 +62,7 @@
                 @endif
 
                 {{-- THE TIMELINE (妥協なきポストの羅列) --}}
-                @forelse ($all_posts as $post)
+                @forelse ($home_posts as $post)
 
                         <div data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000" class="bento-card mb-5">
                             @include('users.posts.contents.title')
